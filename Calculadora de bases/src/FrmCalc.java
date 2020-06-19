@@ -21,109 +21,9 @@ public class FrmCalc extends javax.swing.JFrame {
     public FrmCalc() {
         initComponents();
         
-        
         Panel1.setUI(new PanelFormUI(100, 160, 180, 90, 85, 140));
     }
     
-    
-     public String decimalToHexadecimal(int number) {
-
-        List<String> vet = new ArrayList<String>();
-        StringBuilder result = new StringBuilder();
-
-        do {
-            if (number % 16 < 10) {
-                String aux = "" + number % 16;
-                vet.add(aux);
-            } else {
-                switch (number % 16) {
-                    case 10 :
-                        vet.add("A");
-                        break;
-                    case 11:
-                        vet.add("B");
-                        break;
-                    case 12:
-                        vet.add("C");
-                        break;
-                    case 13:
-                        vet.add("D");
-                        break;
-                    case 14:
-                        vet.add("E");
-                        break;
-                    case 15:
-                        vet.add("F");
-                        break;
-                }
-            }
-            number = (int) number / 16;
-        } while (number != 0);
-
-        for (int i = vet.size() - 1; i >= 0; i--)
-            result.append(vet.get(i));
-
-        return String.format("%s", result);
-    }
-    
-     
-     public String hexadecimalToDecimal(String hexa) {
-
-        int size = hexa.length();
-        int result = 0;
-
-        for (int i = 0; i < hexa.length(); i++) {
-            switch (hexa.charAt(i)) {
-                case '1':
-                    result += (1 * Math.pow(16, --size));
-                    break;
-                case '2':
-                    result += (2 * Math.pow(16, --size));
-                    break;
-                case '3':
-                    result += (3 * Math.pow(16, --size));
-                    break;
-                case '4':
-                    result += (4 * Math.pow(16, --size));
-                    break;
-                case '5':
-                    result += (5 * Math.pow(16, --size));
-                    break;
-                case '6':
-                    result += (6 * Math.pow(16, --size));
-                    break;
-                case '7':
-                    result += (7 * Math.pow(16, --size));
-                    break;
-                case '8':
-                    result += (8 * Math.pow(16, --size));
-                    break;
-                case '9':
-                    result += (9 * Math.pow(16, --size));
-                    break;
-                case 'A':
-                    result += (10 * Math.pow(16, --size));
-                    break;
-                case 'B':
-                    result += (11 * Math.pow(16, --size));
-                    break;
-                case 'C':
-                    result += (12 * Math.pow(16, --size));
-                    break;
-                case 'D':
-                    result += (13 * Math.pow(16, --size));
-                    break;
-                case 'E':
-                    result += (14 * Math.pow(16, --size));
-                    break;
-                case 'F':
-                    result += (15 * Math.pow(16, --size));
-            }
-        }
-
-        return String.valueOf(result);
-    }
-     
      
      public String demaisToDecimal(String dema, int base){
          int resul = 0;
@@ -178,20 +78,20 @@ public class FrmCalc extends javax.swing.JFrame {
                 switch(number % base){
                     case 10:
                         aux = "A";
-                        break;
-                        case 11:
+                    break;
+                    case 11:
                         aux = "B";
-                        break;
-                        case 12:
+                    break;
+                    case 12:
                         aux = "C";
-                        break;
-                        case 13:
+                    break;
+                    case 13:
                         aux = "D";
-                        break;
-                        case 14:
+                    break;
+                    case 14:
                         aux = "E";
-                        break;
-                        case 15:
+                    break;
+                    case 15:
                         aux = "F";
                 }
                  
@@ -239,13 +139,13 @@ public class FrmCalc extends javax.swing.JFrame {
         jLabel1.setText("Base");
 
         CboB1.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
-        CboB1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BIN", "PEN", "HEP", "OCT", "DEC", "DOD", "HEX" }));
+        CboB1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BIN", "TER", "QUA", "PEN", "SEX", "HEP", "OCT", "NON", "DEC", "UND", "DOD", "TRI", "QUR", "QUI", "HEX" }));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         jLabel2.setText("para");
 
         CboB2.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
-        CboB2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BIN", "PEN", "HEP", "OCT", "DEC", "DOD", "HEX" }));
+        CboB2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BIN", "TER", "QUA", "PEN", "SEX", "HEP", "OCT", "NON", "DEC", "UND", "DOD", "TRI", "QUR", "QUI", "HEX" }));
 
         TxtNume.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -322,285 +222,18 @@ public class FrmCalc extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String num = TxtNume.getText().trim();
-        if (CboB1.getSelectedItem().equals("BIN") && (CboB2.getSelectedItem().equals("DEC"))){
-            try{
-                LblResul.setText(String.valueOf(Integer.parseInt(num, 2))); // ou demaisToDecimal(num, 2)
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
+        String num = TxtNume.getText().trim();      
+        try{
+            if (CboB1.getSelectedItem() == CboB2.getSelectedItem()){
+                JOptionPane.showMessageDialog(null, "Bases não podem ser iguais", "Erro", 0);
+            } else if (CboB1.getSelectedItem().equals("DEC")){
+                  LblResul.setText(decimalToDemais(Integer.parseInt(num), Bases.valueOf((String)CboB2.getSelectedItem()).getBase()));
+            }else {
+                LblResul.setText(decimalToDemais(Integer.parseInt(demaisToDecimal(num, Bases.valueOf((String) CboB1.getSelectedItem()).getBase())), Bases.valueOf((String)CboB2.getSelectedItem()).getBase()));
             }
+        } catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "Contacte o suporte técnico \n Erro: " + ex, "Erro ", 2);
         }
-
-        else if (CboB1.getSelectedItem().equals("DEC") && (CboB2.getSelectedItem().equals("BIN"))){
-            try{
-                LblResul.setText(String.valueOf(Integer.toBinaryString(Integer.parseInt(num))));
-
-                /* ou int numr = Integer.parseInt(num);
-                String resul = "";
-                while (numr > 0){
-                    resul = resul + String.valueOf(numr % 2);
-                    numr = numr / 2;
-                }
-                String resulf = new StringBuilder(resul).reverse().toString();
-                LblResul.setText(resulf);
-
-                */
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        }
-
-        else if (CboB1.getSelectedItem().equals("HEX") && (CboB2.getSelectedItem().equals("DEC"))){
-            try{
-                //LblResul.setText(String.valueOf(Integer.parseInt(num, 16)));
-
-                LblResul.setText(hexadecimalToDecimal(num));
-
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        }
-
-        else if (CboB1.getSelectedItem().equals("DEC") && (CboB2.getSelectedItem().equals("HEX"))){
-            try{
-                //LblResul.setText(String.valueOf(Integer.toHexString(Integer.parseInt(num))));
-
-                LblResul.setText(decimalToDemais(Integer.parseInt(num), 16));
-
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("BIN") && (CboB2.getSelectedItem().equals("HEX"))){
-            try{
-                int dec = Integer.parseInt(num, 2);
-                LblResul.setText(decimalToHexadecimal(dec));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("HEX") && (CboB2.getSelectedItem().equals("BIN"))){
-            try{
-                int dec = Integer.parseInt(num, 16);
-                LblResul.setText(String.valueOf(Integer.toBinaryString(dec)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("PEN") && (CboB2.getSelectedItem().equals("DEC"))){
-            try{
-                LblResul.setText(demaisToDecimal(num, 5));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("PEN") && (CboB2.getSelectedItem().equals("HEX"))){
-            try{
-                LblResul.setText(String.valueOf(decimalToHexadecimal(Integer.parseInt(demaisToDecimal(num, 5)))));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, ex, "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("PEN") && (CboB2.getSelectedItem().equals("BIN"))){
-            try{
-                LblResul.setText(String.valueOf(Integer.toBinaryString(Integer.parseInt(demaisToDecimal(num, 5)))));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, ex, "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("PEN") && (CboB2.getSelectedItem().equals("HEP"))){
-            try{
-                LblResul.setText(String.valueOf(decimalToDemais(Integer.parseInt(demaisToDecimal(num, 5)), 7)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, ex, "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("PEN") && (CboB2.getSelectedItem().equals("OCT"))){
-            try{
-                LblResul.setText(String.valueOf(decimalToDemais(Integer.parseInt(demaisToDecimal(num, 5)), 8)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("DEC") && (CboB2.getSelectedItem().equals("PEN"))){
-            try{
-                LblResul.setText(decimalToDemais(Integer.parseInt(num), 5));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("BIN") && (CboB2.getSelectedItem().equals("PEN"))){
-            try{
-                LblResul.setText(decimalToDemais(Integer.parseInt(num, 2), 5));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("HEX") && (CboB2.getSelectedItem().equals("PEN"))){
-            try{
-                int dec = Integer.parseInt(num, 16);
-                LblResul.setText(String.valueOf(decimalToDemais(dec, 5)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("HEP") && (CboB2.getSelectedItem().equals("PEN"))){
-            try{
-                int dec = Integer.parseInt(num, 7);
-                LblResul.setText(String.valueOf(decimalToDemais(dec, 5)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("HEP") && (CboB2.getSelectedItem().equals("DEC"))){
-            try{
-                LblResul.setText(String.valueOf(demaisToDecimal(num, 7)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("HEP") && (CboB2.getSelectedItem().equals("BIN"))){
-            try{
-                LblResul.setText(String.valueOf(Integer.toBinaryString(Integer.parseInt(demaisToDecimal(num, 7)))));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("HEP") && (CboB2.getSelectedItem().equals("HEX"))){
-            try{
-                LblResul.setText(String.valueOf(decimalToHexadecimal(Integer.parseInt(demaisToDecimal(num, 7)))));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("HEP") && (CboB2.getSelectedItem().equals("OCT"))){
-            try{
-                LblResul.setText(String.valueOf(decimalToDemais(Integer.parseInt(demaisToDecimal(num, 7)), 8)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("OCT") && (CboB2.getSelectedItem().equals("DEC"))){
-            try{
-                LblResul.setText(String.valueOf(demaisToDecimal(num, 8)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("OCT") && (CboB2.getSelectedItem().equals("BIN"))){
-            try{
-                LblResul.setText(String.valueOf(Integer.toBinaryString(Integer.parseInt(demaisToDecimal(num, 8)))));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("OCT") && (CboB2.getSelectedItem().equals("HEX"))){
-            try{
-                LblResul.setText(String.valueOf(decimalToHexadecimal(Integer.parseInt(demaisToDecimal(num, 8)))));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("OCT") && (CboB2.getSelectedItem().equals("HEP"))){
-            try{
-                LblResul.setText(String.valueOf(decimalToDemais(Integer.parseInt(demaisToDecimal(num, 8)), 7)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("OCT") && (CboB2.getSelectedItem().equals("PEN"))){
-            try{
-                int dec = Integer.parseInt(num, 8);
-                LblResul.setText(String.valueOf(decimalToDemais(dec, 5)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("BIN") && (CboB2.getSelectedItem().equals("PEN"))){
-            try{
-                int dec = Integer.parseInt(num, 2);
-                LblResul.setText(String.valueOf(decimalToDemais(dec, 5)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("BIN") && (CboB2.getSelectedItem().equals("HEP"))){
-            try{
-                int dec = Integer.parseInt(num, 2);
-                LblResul.setText(String.valueOf(decimalToDemais(dec, 7)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("BIN") && (CboB2.getSelectedItem().equals("OCT"))){
-            try{
-                int dec = Integer.parseInt(num, 2);
-                LblResul.setText(String.valueOf(decimalToDemais(dec, 8)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("HEX") && (CboB2.getSelectedItem().equals("PEN"))){
-            try{
-                int dec = Integer.parseInt(num, 16);
-                LblResul.setText(String.valueOf(decimalToDemais(dec, 5)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("HEX") && (CboB2.getSelectedItem().equals("HEP"))){
-            try{
-                int dec = Integer.parseInt(num, 16);
-                LblResul.setText(String.valueOf(decimalToDemais(dec, 7)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("HEX") && (CboB2.getSelectedItem().equals("OCT"))){
-            try{
-                int dec = Integer.parseInt(num, 16);
-                LblResul.setText(String.valueOf(decimalToDemais(dec, 8)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("DEC") && (CboB2.getSelectedItem().equals("PEN"))){
-            try{
-                LblResul.setText(String.valueOf(decimalToDemais(Integer.parseInt(num), 5)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("DEC") && (CboB2.getSelectedItem().equals("HEP"))){
-            try{
-                LblResul.setText(String.valueOf(decimalToDemais(Integer.parseInt(num), 7)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("DEC") && (CboB2.getSelectedItem().equals("OCT"))){
-            try{
-                LblResul.setText(String.valueOf(decimalToDemais(Integer.parseInt(num), 8)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("DOD") && (CboB2.getSelectedItem().equals("DEC"))){
-            try{
-                LblResul.setText(String.valueOf(demaisToDecimal(num, 12)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("DEC") && (CboB2.getSelectedItem().equals("DOD"))){
-            try{
-                LblResul.setText(String.valueOf(decimalToDemais(Integer.parseInt(num), 12)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("DOD") && (CboB2.getSelectedItem().equals("BIN"))){
-            try{
-                LblResul.setText(String.valueOf(Integer.toBinaryString(Integer.parseInt(demaisToDecimal(num, 12)))));
-
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("BIN") && (CboB2.getSelectedItem().equals("DOD"))){
-            try{
-                LblResul.setText(String.valueOf(Integer.toBinaryString(Integer.parseInt(demaisToDecimal(num, 12)))));
-
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("DOD") && (CboB2.getSelectedItem().equals("HEX"))){
-            try{
-                LblResul.setText(String.valueOf(decimalToHexadecimal(Integer.parseInt(demaisToDecimal(num, 12)))));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        } else if (CboB1.getSelectedItem().equals("HEX") && (CboB2.getSelectedItem().equals("DOD"))){
-            try{
-                LblResul.setText(String.valueOf(decimalToDemais(Integer.parseInt(hexadecimalToDecimal(num)), 12)));
-            }catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Favor informar um número válido para conversão", "Erro", 2);
-            }
-        }
-
-        else {
-            
-            JOptionPane.showMessageDialog(null, "Favor selecionar duas opções distintas", "Aviso", 1);
-            
-        }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
