@@ -21,15 +21,7 @@ import javax.swing.JPanel;
 
 import javax.swing.plaf.basic.BasicPanelUI;
 
- 
 
-/**
-13
- *
-14
- * @author Ugleiton
-15
- */
 
 
 
